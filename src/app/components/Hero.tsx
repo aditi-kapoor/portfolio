@@ -48,14 +48,15 @@ const ScrollIndicator = () => {
       }
     };
 
-    if (isVisible) {
-      startAnimation();
-    } else {
-      controls.stop(); // Stop animation when not visible
-      controls.set({ y: 0 }); // Reset position
-    }
+    window.addEventListener('scroll', checkVisibility);
+    startAnimation();
+    checkVisibility();
 
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+    };
   }, [controls, isVisible]);
+  
 
 
   useEffect(() => {
