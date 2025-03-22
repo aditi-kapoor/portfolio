@@ -48,89 +48,50 @@ const ScrollIndicator = () => {
       }
     };
 
-    window.addEventListener('scroll', checkVisibility);
-    startAnimation();
-    checkVisibility();
+    if (isVisible) {
+      startAnimation();
+    } else {
+      controls.stop(); // Stop animation when not visible
+      controls.set({ y: 0 }); // Reset position
+    }
 
-    return () => {
-      window.removeEventListener('scroll', checkVisibility);
-    };
   }, [controls, isVisible]);
 
-
-  // useEffect(() => {
-  //   if (!isMobile || hasScrolled) return;
-  
-  //   let scrollCount = 0;
-  //   let intervalId;
-  
-  //   const performScrollPreview = () => {
-  //     if (scrollCount >= 2) return; // Limit to two cycles
-  
-  //     setTimeout(() => {
-  //       const experienceTitle = document.getElementById('experience-title');
-  //       if (!experienceTitle) return;
-  
-  //       const titleRect = experienceTitle.getBoundingClientRect();
-  //       const targetScroll = window.scrollY + titleRect.top - 700; // Scroll just to show the title
-  
-  //       console.log(" window.scrollY: "+ window.scrollY+"; titleRect.top: "+titleRect.top);
-
-  //       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-  
-  //       setTimeout(() => {
-  //         window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll back to home
-  //         scrollCount++;
-  //       }, 2000); // Stay at experience title for 2 seconds before scrolling back
-  //     }, 2000); // Initial delay before first scroll
-  //   };
-  
-  //   // Start the preview twice
-  //   performScrollPreview();
-  //   setTimeout(performScrollPreview, 5000); // Repeat once after 5s
-  
-  //   // Restart preview every 30s unless the user navigates
-  //   intervalId = setInterval(() => {
-  //     if (scrollCount >= 2) {
-  //       scrollCount = 0;
-  //       performScrollPreview();
-  //       setTimeout(performScrollPreview, 5000); // Repeat once more
-  //     }
-  //   }, 30000);
-  
-  //   return () => clearInterval(intervalId); // Clean up on unmount
-  // }, [hasScrolled, isMobile]);
 
   useEffect(() => {
     if (!isMobile || hasScrolled) return;
   
     let scrollCount = 0;
     let intervalId;
+    let userScrolled = false; // Track if user scrolled manually
+
+    // Detect manual scrolling
+    const handleUserScroll = () => {
+      userScrolled = true;
+      window.removeEventListener("scroll", handleUserScroll);
+    };
+
+    window.addEventListener("scroll", handleUserScroll);
   
     const performScrollPreview = () => {
-      if (scrollCount >= 2) return; // Limit to two cycles
+      if (scrollCount >= 2 || userScrolled) return; // Limit to two cycles
   
       setTimeout(() => {
         const experienceTitle = document.getElementById('experience-title');
         if (!experienceTitle) return;
   
         const titleRect = experienceTitle.getBoundingClientRect();
-        //const targetScroll = window.scrollY + titleRect.top - 700; // Scroll just to show the title
         const targetScroll = 150;
-  
-        console.log(" window.scrollY: "+ window.scrollY+"; titleRect.top: "+titleRect.top+"; targetScroll: "+targetScroll);
   
         // Apply the bounce effect (scroll down a little, then back up)
         window.scrollTo({ top: targetScroll, behavior: 'smooth' });
   
         setTimeout(() => {
           window.scrollTo({ top: targetScroll - 200, behavior: 'smooth' }); // Move slightly up
-          console.log("A targetScroll: "+(targetScroll-200));
         }, 300); 
   
         setTimeout(() => {
           window.scrollTo({ top: targetScroll, behavior: 'smooth' }); // Move back down
-          console.log("B targetScroll: "+(targetScroll));
         }, 1000); 
   
         setTimeout(() => {
@@ -144,7 +105,11 @@ const ScrollIndicator = () => {
     performScrollPreview();
     setTimeout(performScrollPreview, 2000); // Repeat once after 2s
   
-    return () => clearInterval(intervalId); // Clean up on unmount
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("scroll", handleUserScroll);
+    };
+
   }, [hasScrolled, isMobile]);
   
 
