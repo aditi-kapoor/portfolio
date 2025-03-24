@@ -5,9 +5,8 @@ import { FaChevronUp } from 'react-icons/fa';
 const ScrollIndicator = () => {
   const controls = useAnimation();
   const [isVisible, setIsVisible] = useState(true);
-  const [hasScrolled, setHasScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   // Handle window resize and initial mobile check
   useEffect(() => {
     const checkMobile = () => {
@@ -22,14 +21,10 @@ const ScrollIndicator = () => {
   }, []);
 
   useEffect(() => {
-    const checkVisibility = () => {
-      const experienceTitle = document.getElementById('experience-title');
-      if (experienceTitle) {
-        const rect = experienceTitle.getBoundingClientRect();
-        const buffer = 150; // Increased buffer for better visibility
-        setIsVisible(rect.top > (window.innerHeight - buffer));
-      }
-    };
+    // Show chevron only for first 5 seconds
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 5000);
 
     const startAnimation = async () => {
       while (true) {
@@ -41,115 +36,103 @@ const ScrollIndicator = () => {
               ease: "easeInOut"
             }
           });
-          
           await new Promise(resolve => setTimeout(resolve, 500));
         }
         await new Promise(resolve => setTimeout(resolve, isVisible ? 0 : 1000));
       }
     };
 
-    window.addEventListener('scroll', checkVisibility);
     startAnimation();
-    checkVisibility();
 
     return () => {
-      window.removeEventListener('scroll', checkVisibility);
+      clearTimeout(timer);
     };
   }, [controls, isVisible]);
-  
-
-
-  useEffect(() => {
-    if (!isMobile || hasScrolled) return;
-  
-    let scrollCount = 0;
-    let intervalId;
-    let userScrolled = false; // Track if user scrolled manually
-
-    // Detect manual scrolling
-    const handleUserScroll = () => {
-      userScrolled = true;
-      window.removeEventListener("scroll", handleUserScroll);
-    };
-
-    window.addEventListener("scroll", handleUserScroll);
-  
-    const performScrollPreview = () => {
-      if (scrollCount >= 2 || userScrolled) return; // Limit to two cycles
-  
-      setTimeout(() => {
-        const experienceTitle = document.getElementById('experience-title');
-        if (!experienceTitle) return;
-  
-        const titleRect = experienceTitle.getBoundingClientRect();
-        const targetScroll = 150;
-  
-        // Apply the bounce effect (scroll down a little, then back up)
-        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-  
-        setTimeout(() => {
-          window.scrollTo({ top: targetScroll - 200, behavior: 'smooth' }); // Move slightly up
-        }, 300); 
-  
-        setTimeout(() => {
-          window.scrollTo({ top: targetScroll, behavior: 'smooth' }); // Move back down
-        }, 1000); 
-  
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll back to home
-          scrollCount++;
-        }, 1000); // Stay at experience title for 1 seconds before scrolling back
-      }, 2000); // Initial delay before first scroll
-    };
-  
-    // Start the preview twice
-    performScrollPreview();
-    setTimeout(performScrollPreview, 2000); // Repeat once after 2s
-  
-    return () => {
-      clearInterval(intervalId);
-      window.removeEventListener("scroll", handleUserScroll);
-    };
-
-  }, [hasScrolled, isMobile]);
-  
 
   if (!isVisible || !isMobile) return null;
 
   return (
-    <div className="fixed bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-50">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-50">
       <motion.div animate={controls} className="text-white/80">
-        <FaChevronUp size={20} />
+        <FaChevronUp size={24} />
       </motion.div>
       <motion.div animate={controls} className="text-white/80 -mt-1">
-        <FaChevronUp size={20} />
+        <FaChevronUp size={24} />
       </motion.div>
     </div>
   );
 };
 
-const Hero = () => {
+export const Hero = () => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) {
+      const offset = 100; // Adjust this value to change the scroll offset
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section className="min-h-[100dvh] flex items-center relative overflow-hidden pt-16">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-90"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,theme(colors.white/10)_1px,transparent_0)] bg-[size:20px_20px] opacity-20"></div>
       <div className="container mx-auto px-4 relative py-12 sm:py-20">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
           <div className="w-full md:w-1/2 text-center md:text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              className="space-y-5"
             >
-              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 sm:mb-6">Senior Consultant</h1>
-              <p className="text-lg sm:text-xl leading-relaxed text-white/90">
-                Hello, I am Aditi Kapoor. I am a result-driven Senior Consultant with 6+ years of experience in business process optimization, workflow transformation, and AI-driven solutions across diverse industries.
-              </p>
-              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="#contact" className="w-full sm:w-auto px-6 py-3 bg-white text-blue-600 rounded-full font-medium hover:bg-blue-50 transition-colors text-center">
+              <div className="space-y-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/90 leading-snug">
+                  From Automating Processes to
+                  <br className="hidden sm:block" />
+                  Driving Business Impact:
+                  <span className="block mt-1 text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
+                    My Journey into Product Thinking
+                  </span>
+                </h1>
+              </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20 shadow-xl"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <div className="h-1 w-12 bg-white/40 rounded-full"></div>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white/95 tracking-wide">
+                      Where It All Started
+                    </h2>
+                  </div>
+                  <p className="text-base sm:text-lg text-white/80 leading-loose font-normal tracking-wide">
+                    I started as an automation specialist, solving technical problems. But over the years, I found myself asking deeper questions—not just how to automate but why things should be done a certain way. That curiosity led me toward business strategy, stakeholder collaboration, and decision-making. Today, I help businesses optimize processes, align technology with business goals, and create meaningful impact.
+                  </p>
+                </div>
+              </motion.div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a 
+                  href="#connect"
+                  onClick={(e) => handleScroll(e, 'connect')}
+                  className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors text-center shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+                >
                   Get in Touch
                 </a>
-                <a href="#experience" className="w-full sm:w-auto px-6 py-3 bg-transparent border-2 border-white text-white rounded-full font-medium hover:bg-white/10 transition-colors text-center">
+                <a 
+                  href="#experience"
+                  onClick={(e) => handleScroll(e, 'experience')}
+                  className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all text-center backdrop-blur-sm"
+                >
                   View Experience
                 </a>
               </div>
@@ -160,7 +143,7 @@ const Hero = () => {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-white/10 border-4 border-white/30 flex items-center justify-center"
+              className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-white/10 border-4 border-white/30 flex items-center justify-center backdrop-blur-sm"
             >
               <span className="text-4xl sm:text-6xl text-white font-bold">AK</span>
             </motion.div>
@@ -171,5 +154,3 @@ const Hero = () => {
     </section>
   );
 };
-
-export default Hero;

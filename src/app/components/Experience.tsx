@@ -14,48 +14,90 @@ export const Experience = () => {
         >
           <FaBriefcase className="text-blue-600 text-2xl sm:text-3xl" />
           <h2 id="experience-title" className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-            Work Experience
+            The Proof - Where I Applied This New Thinking
           </h2>
         </motion.div>
         
-        <div className="space-y-6 sm:space-y-8">
+        <div className="space-y-12">
           {/* Present Company */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-6 sm:p-8 border border-gray-100"
+            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
           >
-            <div className="mb-4 sm:mb-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Sr. Consultant</h3>
+            {/* Company Header */}
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <p className="text-blue-600 font-medium">Intelligent Automation Firm</p>
-                <span className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2 bg-blue-50 text-blue-600 rounded-full font-medium whitespace-nowrap">Jun'21-Present</span>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Senior Consultant | Process Optimization & Business Strategy</h3>
+                  <p className="text-blue-600 font-medium mt-1">Intelligent Automation Firm</p>
+                </div>
+                <span className="flex-shrink-0 text-xs sm:text-sm px-4 py-2 bg-blue-100 text-blue-600 rounded-full font-medium whitespace-nowrap">Jun'21-Present</span>
               </div>
             </div>
-            <ul className="space-y-3 sm:space-y-4 text-gray-700">
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
-                <p className="text-sm sm:text-base">Drove innovation initiatives by presenting AI-powered solutions to the AI Governance team, addressing security concerns and ensuring compliance with data protection standards.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
-                <p className="text-sm sm:text-base">Prioritized features based on KPIs and long-term ROI. Refining scope to up to 50% and implementing phased rollouts to improve delivery timelines and user experience.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
-                <p className="text-sm sm:text-base">Led the analysis and strategy for an AI-driven loan amendment processing system, improving decision-making efficiency and saving 600+ man-hours annually.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
-                <p className="text-sm sm:text-base">Designed and launched a financial reconciliation solution, optimizing fee reversals, tax calculations, and currency exchanges, driving operational efficiency and reducing costs.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-blue-600 flex-shrink-0"></span>
-                <p className="text-sm sm:text-base">Defined the product strategy and roadmap for a scalable testing platform, enabling faster app releases and reducing testing time by 65% for one of India's leading bank.</p>
-              </li>
-            </ul>
+
+            {/* Experience Cards Container */}
+            <div className="p-6 space-y-6">
+              {/* First Experience */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+                  Workflow Optimization: Redesigning Financial Reconciliation for a Fintech Client
+                </h4>
+                
+                <div className="space-y-4 text-gray-700">
+                  <p className="text-sm sm:text-base">
+                    One of my first big realizations came while working with a fintech client struggling with financial reconciliation delays. Initially, my role was to automate parts of the process. But when I took a step back, I saw a bigger opportunity:
+                  </p>
+                  
+                  <div className="pl-4 border-l-2 border-blue-200 space-y-3">
+                    <p className="text-sm sm:text-base">
+                      Instead of just automating, I worked with stakeholders to identify inefficiencies in the entire workflow.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      We restructured the process, eliminating redundant steps before introducing automation.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      The result? A 30% reduction in processing time and smoother compliance reporting.
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base">
+                    This was a turning point for me—I wasn't just writing scripts; I was helping define business strategies that drove real impact.
+                  </p>
+                </div>
+              </div>
+
+              {/* Second Experience */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+                  Beyond Automation: Redesigning Operations to Build Smarter Solutions
+                </h4>
+                
+                <div className="space-y-4 text-gray-700">
+                  <p className="text-sm sm:text-base">
+                    I saw a common challenge: process inefficiencies masked as automation opportunities.
+                  </p>
+                  
+                  <p className="text-sm sm:text-base">
+                    Many teams wanted automation because it seemed like a quick fix. But often, the real solution was rethinking the process itself.
+                  </p>
+
+                  <div className="pl-4 border-l-2 border-blue-200 space-y-3">
+                    <p className="text-sm sm:text-base">
+                      I helped businesses analyze workflows, eliminate inefficiencies, and redesign operations before applying automation.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      By shifting the focus from "how do we automate?" to "how do we optimize?", I helped clients achieve sustainable efficiency improvements beyond just automation.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      I worked closely with business teams, tech teams, and leadership, ensuring that solutions were not just technically sound but also strategically aligned.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Previous Company */}
@@ -64,29 +106,89 @@ export const Experience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-6 sm:p-8 border border-gray-100"
+            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
           >
-            <div className="mb-4 sm:mb-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Associate Consultant</h3>
+            {/* Company Header */}
+            <div className="bg-gradient-to-r from-purple-50 to-purple-100 p-6 border-b border-gray-100">
               <div className="flex items-center justify-between">
-                <p className="text-purple-600 font-medium">IT Services and Consulting</p>
-                <span className="flex-shrink-0 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2 bg-purple-50 text-purple-600 rounded-full font-medium whitespace-nowrap">Dec'18-Jun'21</span>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Associate Consultant</h3>
+                  <p className="text-purple-600 font-medium mt-1">IT Services and Consulting</p>
+                </div>
+                <span className="flex-shrink-0 text-xs sm:text-sm px-4 py-2 bg-purple-100 text-purple-600 rounded-full font-medium whitespace-nowrap">Dec'18-Jun'21</span>
               </div>
             </div>
-            <ul className="space-y-3 sm:space-y-4 text-gray-700">
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-purple-600 flex-shrink-0"></span>
-                <p>Optimized P2P and AP workflows for a top FMCG company, leveraging dashboards to eliminate redundancies and enhance efficiency by 23%.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-purple-600 flex-shrink-0"></span>
-                <p>Enhanced credit card reconciliation for a leading hotel chain, cutting errors by 30% and improving financial accuracy and efficiency.</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-2 h-2 mt-2 rounded-full bg-purple-600 flex-shrink-0"></span>
-                <p>Drove customer adoption and operational readiness by training clients on system workflows, result monitoring, and issue resolution, ensuring seamless implementation.</p>
-              </li>
-            </ul>
+
+            {/* Experience Cards Container */}
+            <div className="p-6 space-y-6">
+              {/* First Experience */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+                  Financial Accuracy: Fixing Credit Card Reconciliation for a Leading Hotel Chain
+                </h4>
+
+                <div className="space-y-4 text-gray-700">
+                  <p className="text-sm sm:text-base">
+                    In the hospitality industry, financial reconciliation is a make-or-break process—errors can lead to misplaced revenue, compliance risks, and operational disruptions.
+                  </p>
+
+                  <p className="text-sm sm:text-base">
+                    A leading hotel chain was facing ongoing issues with credit card reconciliation. Their financial team struggled with data mismatches, manual errors, and delayed reporting, which impacted decision-making and compliance.
+                  </p>
+
+                  <div className="pl-4 border-l-2 border-purple-200 space-y-3">
+                    <p className="text-sm sm:text-base font-medium">
+                      Instead of just automating the reconciliation process, I focused on:
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Standardizing data inputs across multiple systems to ensure consistency.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Identifying recurring sources of errors and implementing preventive controls.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Redesigning reporting workflows to enable quicker financial adjustments.
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base">
+                    The result? A 30% reduction in errors, improved accuracy, and a streamlined reconciliation process that reduced manual effort.
+                  </p>
+                </div>
+              </div>
+
+              {/* Second Experience */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+                  Driving Adoption: Ensuring Clients Were Ready for Change
+                </h4>
+
+                <div className="space-y-4 text-gray-700">
+                  <p className="text-sm sm:text-base">
+                    No process improvement is successful unless people adopt it. One of the most overlooked challenges in process transformation is operational readiness—ensuring that users not only understand the new system but feel confident using it.
+                  </p>
+
+                  <div className="pl-4 border-l-2 border-purple-200 space-y-3">
+                    <p className="text-sm sm:text-base font-medium">
+                      To bridge this gap, I led client training sessions focusing on:
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      System Workflows – Educating teams on the new solutions.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Result Monitoring – Teaching teams how to track KPIs and identify anomalies early.
+                    </p>
+                    <p className="text-sm sm:text-base">
+                      Issue Resolution – Empowering users with troubleshooting guides and escalation frameworks.
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base">
+                    The outcome? Seamless implementation, faster user adoption, and reduced dependency on support teams.
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

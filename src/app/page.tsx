@@ -3,9 +3,10 @@
 import {
   Navigation,
   Hero,
+  About,
   Experience,
-  Education,
   Skills,
+  Connect,
   Contact
 } from './components';
 
@@ -18,9 +19,10 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Navigation scrollToTop={scrollToTop} />
       <Hero />
+      <About />
       <Experience />
-      <Education />
       <Skills />
+      <Connect />
       <Contact />
     </div>
   );
