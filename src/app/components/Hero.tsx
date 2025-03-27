@@ -92,9 +92,9 @@ export const Hero = () => {
             >
               <div className="space-y-1">
                 <h1 className="text-white/90">
-                  From Automating Processes to
+                  From Automating Processes to 
                   <br className="hidden sm:block" />
-                  Driving Business Impact:
+                  Driving Business Impact: 
                   <span className="block mt-1 text-white">
                     My Journey into Product Thinking
                   </span>
