@@ -91,11 +91,11 @@ export const Hero = () => {
               className="space-y-5"
             >
               <div className="space-y-1">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/90 leading-snug">
+                <h1 className="text-white/90">
                   From Automating Processes to
                   <br className="hidden sm:block" />
                   Driving Business Impact:
-                  <span className="block mt-1 text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
+                  <span className="block mt-1 text-white">
                     My Journey into Product Thinking
                   </span>
                 </h1>
@@ -110,11 +110,11 @@ export const Hero = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
                     <div className="h-1 w-12 bg-white/40 rounded-full"></div>
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white/95 tracking-wide">
+                    <h2 className="text-white/95">
                       Where It All Started
                     </h2>
                   </div>
-                  <p className="text-base sm:text-lg text-white/80 leading-loose font-normal tracking-wide">
+                  <p className="text-white/80">
                     I started as an automation specialist, solving technical problems. But over the years, I found myself asking deeper questions—not just how to automate but why things should be done a certain way. That curiosity led me toward business strategy, stakeholder collaboration, and decision-making. Today, I help businesses optimize processes, align technology with business goals, and create meaningful impact.
                   </p>
                 </div>

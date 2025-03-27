@@ -13,7 +13,7 @@ export const Connect = () => {
           className="flex items-center gap-3 mb-8 sm:mb-12"
         >
           <FaHandshake className="text-blue-600 text-2xl sm:text-3xl" />
-          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+          <h2 className="section-title">
             The Next Chapter: Let's Connect
           </h2>
         </motion.div>
@@ -26,7 +26,7 @@ export const Connect = () => {
           className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
         >
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 sm:p-8 border-b border-gray-100">
-            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            <p className="body-text">
               I'm always excited to connect with like-minded professionals who care about solving problems, optimizing processes, and driving impact. Whether you're a fellow strategist, a hiring manager, or just someone interested in process and product thinking, let's chat!
             </p>
           </div>
